@@ -226,11 +226,26 @@ function calculateEmissions() {
 chart.appear(1000, 100);
 
 }); // end am5.ready()
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("options").addEventListener("change", function(e) {
+        // Your existing code
+    });
+});
+
 </script>
 
 <!-- HTML -->
 <div id="chartdiv"></div>
 <br>
+<div id="dropdownMenu">
+    <label for="options">Choose an option:</label>
+    <select id="options">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+    </select>
+</div>
 <div id="carbonCounter">
 <p>Carbon emissions: <span id="carbonValue">0</span> tonnes</p>
 </div>
