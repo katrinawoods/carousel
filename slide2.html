@@ -12,6 +12,7 @@
 <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
+<script src="cities1.js"></script>
 <!-- Chart code -->
 <script>
 am5.ready(function() {
@@ -137,13 +138,14 @@ pointSeries.bullets.push(function() {
   });
 });
 
-var paris = addCity({ latitude: 48.8567, longitude: 2.351 }, "Paris");
-var toronto = addCity({ latitude: 43.8163, longitude: -79.4287 }, "Toronto");
-var la = addCity({ latitude: 34.3, longitude: -118.15 }, "Los Angeles");
-var havana = addCity({ latitude: 23, longitude: -82 }, "Havana");
 
-var lineDataItem = lineSeries.pushDataItem({
-  pointsToConnect: [paris, toronto, la, havana]
+const cityObjects = cityData.map(city => {
+  return addCity({ latitude: city.latitude, longitude: city.longitude }, city.name);
+});
+
+// Push the city objects to the line series
+const lineDataItem = lineSeries.pushDataItem({
+  pointsToConnect: cityObjects
 });
 
 var planeSeries = chart.series.push(am5map.MapPointSeries.new(root, {}));
