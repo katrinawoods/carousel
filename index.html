@@ -360,6 +360,22 @@ body, html {
 </footer>
  
 <script>
+	document.body.addEventListener('click', function(e) {
+        e.preventDefault();
+        if(e.target.getAttribute('contenteditable') !== 'true') {
+            e.target.setAttribute('contenteditable', 'true');
+            e.target.focus();
+        }
+    });
+
+    function downloadHTML() {
+        const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'updated.html';
+        a.click();
+    }
+
 // Modal Image Gallery
 function onClick(element) {
   document.getElementById("img01").src = element.src;
